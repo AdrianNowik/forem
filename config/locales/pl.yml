@@ -191,6 +191,9 @@ pl:
         title: "Narzędzia moderacyjne dla %{forum}"
   helpers:
     submit:
+      group:
+        create: Utwórz grupę
+        update: Aktualizuj grupę
       category:
         create: Utwórz kategorię
         update: Aktualizuj kategorię
