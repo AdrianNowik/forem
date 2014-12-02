@@ -3,7 +3,7 @@ module Forem
     def forem_avatar(user, options = {})
       image = if Forem.avatar_user_method
         # Try to use the user's custom avatar method
-        user.try Forem.avatar_user_method.to_sym
+        user.avatar.url(:thumb)
       else
         avatar_url user.forem_email, options
       end

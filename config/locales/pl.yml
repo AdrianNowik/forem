@@ -21,7 +21,7 @@ pl:
       back_to_admin: "Powrót do panelu administracyjnego"
       back_to_forums: "Powrót do forów"
       back_to_groups: "Powrót do grup"
-      welcome: "Witaj w panelu administracyjnym Forem."
+      welcome: "Witaj w panelu administracyjnym"
       forum:
         moderator_groups: Moderator grup
         index: Zarządzanie forami
@@ -103,6 +103,7 @@ pl:
         last_post: 'Ostatni wpis:'
         none: Brak
     topic:
+      cancel_subscription: 'Jeśli chcesz anulować subskrypcję kliknij link: '
       headings:
         topic: Temat
         latest: Ostatni
@@ -111,7 +112,7 @@ pl:
       moderation:
         success: Zaznaczony temat został zmoderowany.
         no_option_selected: Nie zaznaczono opcji moderowania.
-      received_reply: Temat, który subskrybujesz, ma nową odpowiedź.
+      received_reply: 'Temat, który subskrybujesz, ma nową odpowiedź. Możesz ją zobaczyć tutaj: '
       reply: Odpowiedz
       quote: Cytuj
       delete: Usuń
@@ -126,6 +127,9 @@ pl:
       subscribed: Subskrybujesz ten temat.
       unsubscribed: Nie subskrybujesz tego tematu.
       none: To forum jest puste.
+      lastly_added: Nowy!
+      view_message: pokaż
+      cancel: anuluj
       links:
         new: Dodaj temat
         back_to_topics: Powrót
@@ -140,6 +144,7 @@ pl:
       pinned:
         'true': Ten temat jest przypięty.
         'false': Ten temat nie jest przypięty.
+      properties: 'Właściwości'
     topics:
       show:
         reply: Odpowiedz
@@ -162,7 +167,7 @@ pl:
         reply: Odpowiedz
         edit: Edytuj
       created: Odpowiedź dodana.
-      new: Odpowiedz
+      new: Nowy post
       edit: Edycja postu
       not_created: Odpowiedź nie została dodana.
       not_created_topic_locked: Nie możesz odpowiadać w zablokowanych tematach.
@@ -186,6 +191,9 @@ pl:
         title: "Narzędzia moderacyjne dla %{forum}"
   helpers:
     submit:
+      category:
+        create: Utwórz kategorię
+        update: Aktualizuj kategorię
       forum:
         create: Utwórz forum
         update: Aktualizuj forum
@@ -196,6 +204,7 @@ pl:
     labels:
       category:
         name: Nazwa
+        position: Pozycja
       forum:
         title: Tytuł
         description: Opis

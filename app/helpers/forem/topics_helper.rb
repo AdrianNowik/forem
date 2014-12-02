@@ -13,7 +13,7 @@ module Forem
 
         if forum_view
           if topic_view.nil? && topic.created_at > forum_view.past_viewed_at
-            content_tag :super, "New"
+            content_tag :i, nil, class: 'fa fa-exclamation fa-2x', title: t('forem.topic.lastly_added')
           end
         end
       end
@@ -34,6 +34,10 @@ module Forem
       content_tag("time", datetime: post.created_at.to_s(:db)) do
         "#{time_ago_in_words(post.created_at)} #{t(:ago)}"
       end
+    end
+
+    def icon_space(topic)
+      [topic.pinned?, topic.hidden?, new_since_last_view_text(topic).present?, topic.locked?].count { |x| x == true } * 45
     end
 
   end
