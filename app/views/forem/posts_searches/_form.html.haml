@@ -1,0 +1,4 @@
+= form_tag forem.results_post_searches_path, method: :get, class: 'post-searches-form' do
+  = label_tag 'post_search[text]', t('simple_form.labels.post.text')
+  = text_field_tag 'post_search[text]'
+  = submit_tag t('forem.general.search'), class: 'btn btn-default', style: 'padding: 5px 10px;'

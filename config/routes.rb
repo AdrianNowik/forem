@@ -6,6 +6,11 @@ Forem::Engine.routes.draw do
   # end
 
   resources :categories, :only => [:index, :show]
+  resources :post_searches, only: [] do
+    collection do
+      get :results
+    end
+  end
 
   namespace :admin do
     root :to => "base#index"

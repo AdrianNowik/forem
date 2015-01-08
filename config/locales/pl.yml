@@ -1,6 +1,8 @@
 pl:
   forem:
     general:
+      search: 'Szukaj'
+      search_posts: 'Przeszukaj forum'
       deleted: [usunięte]
       forum: Forum
       topics: Tematy
@@ -189,6 +191,10 @@ pl:
     moderation:
       index:
         title: "Narzędzia moderacyjne dla %{forum}"
+    post_searches:
+      results: 'Znalezione posty:'
+      search_again: 'Wyszukaj ponownie...'
+      not_found: 'Brak wyników'
   helpers:
     submit:
       group:

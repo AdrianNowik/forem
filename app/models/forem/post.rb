@@ -83,7 +83,7 @@ module Forem
     end
 
     def owner_or_admin?(other_user)
-      user == other_user || other_user.forem_admin?
+      user == other_user || other_user.forem_admin? if other_user.present?
     end
 
     protected
