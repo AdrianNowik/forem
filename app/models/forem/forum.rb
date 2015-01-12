@@ -40,5 +40,10 @@ module Forem
     def to_s
       name
     end
+
+    def self.reorganize_positions(category_id, position)
+      Forem::Category.find(category_id).forums.where('position > ?', position).map{ |forum| forum.update(position: forum.position - 1) }
+    end
+
   end
 end

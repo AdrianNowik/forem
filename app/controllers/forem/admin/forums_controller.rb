@@ -1,7 +1,7 @@
 module Forem
   module Admin
     class ForumsController < BaseController
-      before_filter :find_forum, :only => [:edit, :update, :destroy]
+      before_filter :find_forum, :only => [:edit, :update, :destroy, :change_position]
 
       def index
         @forums = Forem::Forum.all
@@ -12,7 +12,7 @@ module Forem
       end
 
       def create
-        @forum = Forem::Forum.new(forum_params)
+        @forum = Forem::Forum.new(forum_params.merge(position: Forem::Category.find(params[:forum][:category_id]).forums.maximum(:position) + 1))
         if @forum.save
           create_successful
         else
@@ -30,7 +30,13 @@ module Forem
 
       def destroy
         @forum.destroy
+        reorganize_positions
         destroy_successful
+      end
+
+      def change_position
+        Forem::ChangePosition.new(@forum, params[:direction]).process
+        update_successful
       end
 
       private
@@ -66,6 +72,10 @@ module Forem
       def update_failed
         flash.now.alert = t("forem.admin.forum.not_updated")
         render :action => "edit"
+      end
+
+      def reorganize_positions
+        Forem::Forum.reorganize_positions(@forum.category_id, @forum.position)
       end
 
     end

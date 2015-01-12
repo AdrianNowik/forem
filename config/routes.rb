@@ -24,6 +24,9 @@ Forem::Engine.routes.draw do
     end
 
     resources :forums do
+      member do
+        get :change_position
+      end
       resources :moderators
       resources :topics do
         member do
