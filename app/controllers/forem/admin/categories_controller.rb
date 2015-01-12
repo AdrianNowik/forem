@@ -12,7 +12,7 @@ module Forem
       end
 
       def create
-        if @category = Forem::Category.create(category_params)
+        if @category = Forem::Category.create(category_params.merge(position: Forem::Category.maximum(:position) + 1))
           create_successful
         else
           create_failed
@@ -41,7 +41,7 @@ module Forem
       private
 
       def category_params
-        params.require(:category).permit(:name).merge(position: Forem::Category.maximum(:position) + 1)
+        params.require(:category).permit(:name)
       end
 
       def find_category
