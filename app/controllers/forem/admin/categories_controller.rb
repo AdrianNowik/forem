@@ -14,7 +14,6 @@ module Forem
       def create
         if @category = Forem::Category.create(category_params)
           create_successful
-          set_position
         else
           create_failed
         end
@@ -42,7 +41,7 @@ module Forem
       private
 
       def category_params
-        params.require(:category).permit :name
+        params.require(:category).permit(:name).merge(position: Forem::Category.maximum(:position) + 1)
       end
 
       def find_category
@@ -72,10 +71,6 @@ module Forem
       def update_failed
         flash.now.alert = t("forem.admin.category.not_updated")
         render :action => "edit"
-      end
-
-      def set_position
-        @category.update_attribute(:position, Forem::Category.maximum(:position)+1)
       end
 
       def reorganize_positions
