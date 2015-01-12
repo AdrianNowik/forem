@@ -13,5 +13,9 @@ module Forem
       name
     end
 
+    def self.reorganize_positions(position)
+      where('position > ?', position).map{ |category| category.update(position: category.position - 1) }
+    end
+
   end
 end

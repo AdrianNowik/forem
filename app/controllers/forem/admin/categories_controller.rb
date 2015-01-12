@@ -1,7 +1,7 @@
 module Forem
   module Admin
     class CategoriesController < BaseController
-      before_filter :find_category, :only => [:edit, :update, :destroy]
+      before_filter :find_category, :only => [:edit, :update, :destroy, :change_position]
 
       def index
         @categories = Forem::Category.all
@@ -14,6 +14,7 @@ module Forem
       def create
         if @category = Forem::Category.create(category_params)
           create_successful
+          set_position
         else
           create_failed
         end
@@ -29,13 +30,19 @@ module Forem
 
       def destroy
         @category.destroy
+        reorganize_positions
         destroy_successful
+      end
+
+      def change_position
+        Forem::ChangePosition.new(@category, params[:direction]).process
+        update_successful
       end
 
       private
 
       def category_params
-        params.require(:category).permit(:name, :position)
+        params.require(:category).permit :name
       end
 
       def find_category
@@ -65,6 +72,14 @@ module Forem
       def update_failed
         flash.now.alert = t("forem.admin.category.not_updated")
         render :action => "edit"
+      end
+
+      def set_position
+        @category.update_attribute(:position, Forem::Category.maximum(:position)+1)
+      end
+
+      def reorganize_positions
+        Forem::Category.reorganize_positions(@category.position)
       end
 
     end

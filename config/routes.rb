@@ -6,6 +6,7 @@ Forem::Engine.routes.draw do
   # end
 
   resources :categories, :only => [:index, :show]
+
   resources :post_searches, only: [] do
     collection do
       get :results
@@ -33,7 +34,11 @@ Forem::Engine.routes.draw do
       end
     end
 
-    resources :categories
+    resources :categories do
+      member do
+        get :change_position
+      end
+    end
 
     get 'users/autocomplete', :to => "users#autocomplete", :as => "user_autocomplete"
   end
