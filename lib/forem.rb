@@ -15,7 +15,7 @@ module Forem
   mattr_accessor :base_path, :user_class, :formatter,
                  :default_gravatar, :default_gravatar_image, :avatar_user_method,
                  :user_profile_links, :email_from_address, :autocomplete_field,
-                 :per_page, :sign_in_path, :moderate_first_post, :layout
+                 :per_page, :sign_in_path, :moderate_first_post, :layout, :answerable_posts
 
 
   class << self

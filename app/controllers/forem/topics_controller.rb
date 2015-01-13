@@ -61,7 +61,7 @@ module Forem
     def topic_params
       params.require(:topic).permit(:subject, :posts_attributes => [[:text]])
     end
-    
+
     def create_successful
       redirect_to [@forum, @topic], :notice => t("forem.topic.created")
     end
@@ -103,6 +103,9 @@ module Forem
       posts = topic.posts
       unless forem_admin_or_moderator?(topic.forum)
         posts = posts.approved_or_pending_review_for(forem_user)
+      end
+      if Forem.answerable_posts
+        posts = posts.where(reply_to_id: nil)
       end
       @posts = posts
     end
