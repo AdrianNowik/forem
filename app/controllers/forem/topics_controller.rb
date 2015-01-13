@@ -105,7 +105,7 @@ module Forem
         posts = posts.approved_or_pending_review_for(forem_user)
       end
       if Forem.answerable_posts
-        posts = posts.where(reply_to_id: nil)
+        posts = posts.without_replies
       end
       @posts = posts
     end

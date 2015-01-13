@@ -134,7 +134,11 @@ module Forem
     end
 
     def last_page
-      (self.posts.count.to_f / Forem.per_page.to_f).ceil
+      if Forem.answerable_posts
+        (self.posts.without_replies.count.to_f / Forem.per_page.to_f).ceil
+      else
+        (self.posts.count.to_f / Forem.per_page.to_f).ceil
+      end
     end
 
     protected

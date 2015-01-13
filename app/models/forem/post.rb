@@ -34,6 +34,8 @@ module Forem
     after_create :subscribe_replier, :if => :user_auto_subscribe?
     after_create :skip_pending_review
 
+    scope :without_replies, -> { where(reply_to_id: nil) }
+
     class << self
       def approved
         where(:state => "approved")
