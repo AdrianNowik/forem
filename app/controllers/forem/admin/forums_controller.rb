@@ -12,7 +12,7 @@ module Forem
       end
 
       def create
-        @forum = Forem::Forum.new(forum_params.merge(position: Forem::Category.find(params[:forum][:category_id]).forums.maximum(:position) + 1))
+        @forum = Forem::Forum.new(forum_params.merge(position: forum_position))
         if @forum.save
           create_successful
         else
@@ -76,6 +76,11 @@ module Forem
 
       def reorganize_positions
         Forem::Forum.reorganize_positions(@forum.category_id, @forum.position)
+      end
+
+      def forum_position
+        max_position = Forem::Category.find(params[:forum][:category_id]).forums.maximum(:position)
+        max_position.present? ? max_position + 1 : 0
       end
 
     end

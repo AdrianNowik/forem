@@ -12,7 +12,7 @@ module Forem
       end
 
       def create
-        if @category = Forem::Category.create(category_params.merge(position: Forem::Category.maximum(:position) + 1))
+        if @category = Forem::Category.create(category_params.merge(position: category_position))
           create_successful
         else
           create_failed
@@ -75,6 +75,10 @@ module Forem
 
       def reorganize_positions
         Forem::Category.reorganize_positions(@category.position)
+      end
+
+      def category_position
+        Forem::Category.maximum(:position).present? ? (Forem::Category.maximum(:position).present?) + 1 : 0
       end
 
     end
