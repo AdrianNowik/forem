@@ -78,7 +78,7 @@ module Forem
       end
 
       def category_position
-        Forem::Category.maximum(:position).present? ? (Forem::Category.maximum(:position).present?) + 1 : 0
+        Forem::Category.maximum(:position).present? ? Forem::Category.maximum(:position) + 1 : 0
       end
 
     end
