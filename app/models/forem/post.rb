@@ -31,6 +31,7 @@ module Forem
     delegate :forum, :to => :topic
 
     after_create :set_topic_last_post_at
+    after_create :approve_if_added_by_admin
     after_create :subscribe_replier, :if => :user_auto_subscribe?
     after_create :skip_pending_review
 
@@ -119,11 +120,17 @@ module Forem
     end
 
     def approve_user
-      user.update_column(:forem_state, "approved") if user && user.forem_state != "approved"
+      user.update_column(:forem_state, "approved") if user && user.forem_state != "approved" && !Forem.moderating_only_posts
+    end
+
+    def approve_if_added_by_admin
+      if User.find_by(id: user_id).forem_admin
+        update(state: 'approved')
+      end
     end
 
     def spam
-      user.update_column(:forem_state, "spam") if user
+      user.update_column(:forem_state, "spam") if user && !Forem.moderating_only_posts
     end
 
   end

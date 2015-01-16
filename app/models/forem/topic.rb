@@ -33,6 +33,7 @@ module Forem
     validates :user, :presence => true
 
     before_save  :set_first_post_user
+    after_create :approve_if_added_by_admin
     after_create :subscribe_poster
     after_create :skip_pending_review, :unless => :moderated?
 
@@ -154,6 +155,12 @@ module Forem
     def approve
       first_post = posts.by_created_at.first
       first_post.approve! unless first_post.approved?
+    end
+
+    def approve_if_added_by_admin
+      if User.find_by(id: user_id).forem_admin
+        update(state: 'approved')
+      end
     end
 
     def moderated?

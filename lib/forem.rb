@@ -15,7 +15,7 @@ module Forem
   mattr_accessor :base_path, :user_class, :formatter,
                  :default_gravatar, :default_gravatar_image, :avatar_user_method,
                  :user_profile_links, :email_from_address, :autocomplete_field,
-                 :per_page, :sign_in_path, :moderate_first_post, :layout, :answerable_posts
+                 :per_page, :sign_in_path, :moderate_first_post, :layout, :answerable_posts, :moderating_only_posts
 
 
   class << self
@@ -66,6 +66,10 @@ module Forem
 
     def autocomplete_field
       @@autocomplete_field || "email"
+    end
+
+    def moderating_only_posts
+      @@moderating_only_posts || false
     end
 
     def per_page
