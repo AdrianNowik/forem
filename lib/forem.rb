@@ -15,7 +15,7 @@ module Forem
   mattr_accessor :base_path, :user_class, :formatter,
                  :default_gravatar, :default_gravatar_image, :avatar_user_method,
                  :user_profile_links, :email_from_address, :autocomplete_field,
-                 :per_page, :sign_in_path, :moderate_first_post, :layout, :answerable_posts, :moderating_only_posts
+                 :per_page, :sign_in_path, :moderate_first_post, :layout, :answerable_posts, :moderating_only_posts, :hide_blockquotes_in_input
 
 
   class << self
@@ -70,6 +70,10 @@ module Forem
 
     def moderating_only_posts
       @@moderating_only_posts || false
+    end
+
+    def hide_blockquotes_in_input
+      @@hide_blockquotes_in_input || false
     end
 
     def per_page

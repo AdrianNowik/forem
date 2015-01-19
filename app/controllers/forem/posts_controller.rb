@@ -20,7 +20,7 @@ module Forem
       @post = @topic.posts.build
       find_reply_to_post
 
-      if params[:quote] && @reply_to_post
+      if params[:quote] && @reply_to_post && Forem.hide_blockquotes_in_input
         @post.text = view_context.forem_quote(@reply_to_post.text)
       elsif params[:quote] && !@reply_to_post
         flash[:notice] = t("forem.post.cannot_quote_deleted_post")
@@ -30,6 +30,7 @@ module Forem
 
     def create
       @post = @topic.posts.build(post_params)
+      quote_replied_post if !Forem.hide_blockquotes_in_input && params[:post][:quote]
       @post.user = forem_user
 
       if @post.save
@@ -56,6 +57,10 @@ module Forem
     end
 
     private
+
+    def quote_replied_post
+      @post.quote_replied_post
+    end
 
     def post_params
       params.require(:post).permit(:text, :reply_to_id)
@@ -135,7 +140,7 @@ module Forem
     end
 
     def find_reply_to_post
-      @reply_to_post = @topic.posts.find_by_id(params[:reply_to_id])
+      @reply_to_post = @topic.posts.find_by_id(params[:reply_to_id] || params[:post].try(:reply_to_id))
     end
   end
 end

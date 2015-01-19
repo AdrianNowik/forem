@@ -4,6 +4,7 @@ pl:
       search: 'Szukaj'
       search_posts: 'Przeszukaj forum'
       deleted: [usunięte]
+      nil_user: 'usunięty'
       forum: Forum
       topics: Tematy
       topic: Temat
@@ -164,6 +165,7 @@ pl:
         pin:
           'true': Odepnij ten temat
           'false': Przypnij ten temat
+      moderate: 'Moderuj temat'
     post:
       buttons:
         reply: Odpowiedz
@@ -181,6 +183,7 @@ pl:
       in_reply_to: W odpowiedzi na wypowiedź użytkownika
       cannot_quote_deleted_post: Post, który chcesz zacytować, już nie istnieje.
     posts:
+      moderate: 'Moderuj post'
       moderation:
         moderate: Moderuj
         approve: Zatwierdź

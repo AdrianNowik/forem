@@ -73,11 +73,8 @@ module Forem
       end
 
       def moderate!(posts)
-        posts.each do |post_id, moderation|
-          # We use find_by_id here just in case a post has been deleted.
-          post = Post.find_by_id(post_id)
-          post.send("#{moderation[:moderation_option]}!") if post
-        end
+        post = Post.find_by_id(posts[:post_id])
+        post.send("#{posts[:moderation_option]}!") if post
       end
     end
 
@@ -89,11 +86,15 @@ module Forem
       user == other_user || other_user.forem_admin? if other_user.present?
     end
 
+    def quote_replied_post
+      assign_attributes(text: "<blockquote>#{Forem::Post.find_by(id: reply_to_id).text}</blockquote>\r\n\r\n#{text}") unless text.empty?
+    end
+
     protected
 
     def subscribe_replier
-      if topic && user
         topic.subscribe_user(user.id)
+      if topic && user
       end
     end
 

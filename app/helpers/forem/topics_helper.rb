@@ -37,7 +37,7 @@ module Forem
     end
 
     def icon_space(topic)
-      [topic.pinned?, topic.hidden?, new_since_last_view_text(topic).present?, topic.locked?].count { |x| x == true } * 45
+      [topic.pinned?, topic.hidden?, new_since_last_view_text(topic).present?, topic.locked?, topic.pending_review?, topic.spam?].count { |x| x == true } * 45
     end
 
   end

@@ -5,7 +5,7 @@ module Forem
     end
 
     def forem_name
-      "[deleted]"
+      "[#{t('general.nil_user')}]"
     end
   end
 end
