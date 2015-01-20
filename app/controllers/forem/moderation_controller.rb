@@ -11,7 +11,7 @@ module Forem
 
     def posts
       Forem::Post.moderate!(params[:posts] || [])
-      flash[:notice] = t('forem.posts.moderation.success')
+      flash[:notice] = t('forem.posts.moderation.flagged_as_approved')
       redirect_to :back
     end
 
@@ -19,7 +19,7 @@ module Forem
       if params[:topic]
         topic = forum.topics.friendly.find(params[:topic_id])
         topic.moderate!(params[:topic][:moderation_option])
-        flash[:notice] = t("forem.topic.moderation.success")
+        flash[:notice] = t("forem.topic.moderation.flagged_as_approved")
       else
         flash[:error] = t("forem.topic.moderation.no_option_selected")
       end

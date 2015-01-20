@@ -113,6 +113,7 @@ pl:
         posts: Wpisy
         views: Wyświetlenia
       moderation:
+        flagged_as_approved: 'Temat został potwierdzony'
         success: Zaznaczony temat został zmoderowany.
         no_option_selected: Nie zaznaczono opcji moderowania.
       received_reply: 'Temat, który subskrybujesz, ma nową odpowiedź. Możesz ją zobaczyć tutaj: '
@@ -177,14 +178,16 @@ pl:
       not_created_topic_locked: Nie możesz odpowiadać w zablokowanych tematach.
       edited: Twój post został zaktualizowany.
       not_edited: Twój post nie został zaktualizowany.
-      deleted: Twój wpis został usunięty.
-      deleted_with_topic: Tylko post w temacie usunięty. Temat również usunięty.
+      deleted: Wpis został usunięty.
+      deleted_with_topic: Temat i post zostały usunięte.
       cannot_delete: Nie możesz usunąć wpisu, którego nie dodałeś.
       in_reply_to: W odpowiedzi na wypowiedź użytkownika
       cannot_quote_deleted_post: Post, który chcesz zacytować, już nie istnieje.
     posts:
       moderate: 'Moderuj post'
       moderation:
+        flagged_as_spam: 'Post został oznaczony jako spam. Zostanie on automatycznie usunięty po godzinie'
+        flagged_as_approved: 'Post został zatwierdzony'
         moderate: Moderuj
         approve: Zatwierdź
         spam: Spam
