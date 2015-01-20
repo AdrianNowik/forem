@@ -1,6 +1,6 @@
 module Forem
   class PostsController < Forem::ApplicationController
-    before_filter :authenticate_forem_user, except: :show
+    before_filter :require_login, except: :show
     before_filter :find_topic
     before_filter :reject_locked_topic!, :only => [:create]
     before_filter :block_spammers, :only => [:new, :create]
