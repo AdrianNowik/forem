@@ -1,7 +1,7 @@
 module Forem
   module PostsHelper
     def forem_avatar(user, options = {})
-      image = if Forem.avatar_user_method
+      image = if Forem.avatar_user_method && user.present?
         # Try to use the user's custom avatar method
         user.avatar.url(:thumb)
       else
