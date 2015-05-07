@@ -5,7 +5,7 @@ module Forem
     end
 
     def forem_name
-      "[#{t('general.nil_user')}]"
+      "[#{I18n.t('general.nil_user')}]"
     end
   end
 end
